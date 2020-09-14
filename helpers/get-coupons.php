@@ -119,7 +119,12 @@ function aac_get_primary_coupon_ajax() {
         exit( json_encode($response) );
     }
     $affiliate_id = $_POST['affiliate_id'];
-    $user_id = AAC_get_userid_by_affid( $affiliate_id );
+    $user_id = false;
+    if ( class_exists('Affiliate_WP') ) {
+        $user_id = AAC_get_userid_by_affid( $affiliate_id );
+    } else if ( class_exists('Vitalibis_Wp') ) {
+        $user_id = AAC_get_user_id_by_vitalibiswp_affiliate_id( $affiliate_id );
+    }
     if (!$user_id) {
         exit( json_encode($response) );
     }

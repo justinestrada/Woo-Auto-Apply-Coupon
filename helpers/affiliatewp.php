@@ -12,4 +12,3 @@ function AAC_get_userid_by_affid( $affiliate_id ) {
     $user_id = (!empty($result)) ? (int)$result[0]->user_id : false;
     return $user_id;
 }
-
